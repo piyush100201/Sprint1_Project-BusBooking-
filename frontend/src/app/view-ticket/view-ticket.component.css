@@ -1,0 +1,31 @@
+.ticket{
+    background-color: white;
+}
+ .heading{
+    text-align: center;
+ }
+
+ .route{
+    background-color: rgb(187, 127, 135);
+ }
+
+ .passenger{
+    border: cadetblue 1px solid;
+ }
+
+ .condition{
+     color: crimson;
+ }
+
+
+ #margins{
+  padding-top: 10%;
+  padding-bottom: 10%;
+ 
+ }
+
+ .button1{
+ margin-top: 5%;
+ justify-self: center;
+ text-align: center;
+ }

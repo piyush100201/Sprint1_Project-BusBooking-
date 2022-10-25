@@ -1,0 +1,53 @@
+<app-header3> </app-header3>
+<div id="margins" style="background-image:url(../../assets/pexels4.jpg);background-size:cover; background-repeat:no-repeat;background-position:center;">
+<div class="card border-danger col-md-6"  id="card1">
+    
+    <h4 class="card-title" style="text-align: center;">My Profile</h4>
+  <div class="card-body">
+
+        <table class="table table-striped">
+            <tr>
+                <td>Name</td>
+                <td>{{User.userName}}</td>
+            </tr>
+            <br>
+            <tr>
+                <td>Email </td>
+                <td>{{User.email}}</td> 
+            </tr>
+            <br>
+            <tr>
+                <td>Phone Number&nbsp;&nbsp;&nbsp;  </td>
+                <td>{{User.phoneNumber}}</td>
+            </tr>
+            <br>
+            <tr>
+                <td>Gender</td>
+                <td>{{User.gender}}</td>
+            </tr>
+            <br>
+            <tr>
+                <td>DOB</td>
+                <td>{{User.dateOfBirth | date:'yyyy-MM-dd'}}</td>
+            </tr>
+            <br>
+            <tr>
+                <td class = "text-center edit-block">
+                    <span class = "edit" [routerLink]="['/users/updateUser/',User._id]">
+                        <button type="button" class="btn btn-sm" style="background-color:maroon ; color:gainsboro">Edit</button>
+                    </span>
+                </td>
+                <td>
+                    <span class = "delete" (click)= "removeUser(User)">
+                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                    </span>
+                </td>
+            </tr>
+        </table>
+    
+    
+    
+  </div>
+</div>
+</div>
+

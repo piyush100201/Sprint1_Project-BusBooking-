@@ -1,0 +1,64 @@
+
+<app-header2></app-header2>
+<div id="margins" style="background-image:url(../../assets/pexels7.jpg);background-size:cover; background-repeat:no-repeat;background-position:center;opacity:0.8;">
+<div class="container parentcontainer" id="id1">
+    <div class="row justify-content-center" *ngIf="1">
+        <div class="col col-lg-4 col-md-6 col-sm-12 bus" placement="right" ngbTooltip="Click on seat icons to select seats">
+            <form [formGroup]="editForm" >
+                <p class="lead "><i class="fa fa-bus" style="color:purple;"></i>Select Seats</p>
+                <hr>
+                <div class="class1">
+                <ng-container formArrayName="seats">
+                    <ng-container *ngFor="let _ of seatsfor; index as i">
+                    <label class="seatCheckbox" [id]="i" style="opacity:1;">
+                     
+                    <input 
+                        [formControlName]="i" type="checkbox" [id]="i"
+                        [attr.disabled]="seatStatus[i] ? true : null"/>
+                        <span></span>
+                    </label>
+                    <br *ngIf="(i+1)%rows==0 ">
+                    </ng-container>
+                </ng-container>
+                </div>
+            </form>
+        </div>
+        <div class="col col-lg-5 offset-lg-1 col-md-6 col-sm-12" id="col2">
+            <div class="row seatstable p-3 mb-2 bg-light text-primary">
+                <ng-container *ngIf="selectedSeats.length;else noseaterror">
+                    <h1>Selected seats</h1>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                            <th scope="col">Seats</th>
+                            <th scope="col">Fare</th>
+                            <th scope="col">Bus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let i of selectedSeats">
+                            <td>{{i |seatname}}</td>
+                            <td>{{this.busData.pricePerSeat | currency: 'INR'}}</td>
+                            <td>{{"Sleeper"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ng-container>
+                <ng-template #noseaterror>
+                        <div class="alert alert-danger" *ngIf="submitted" role="alert">
+                            *You must select atleast one seat before proceeding.
+                        </div>
+                        <img src="assets/empty.png" class="img img-fluid" *ngIf="!submitted">
+                </ng-template>
+            </div>
+            <div class="row total">
+                <h4>Total : {{selectedSeats.length * this.busData.pricePerSeat| currency: 'INR'}}</h4>
+            </div>
+            <div class="row justify-content-center" id="button1">
+                <button *ngIf="selectedSeats.length" class="btn btn-block" type="submit" (click)="submit()"> Confirm Seats </button>
+                <button *ngIf="selectedSeats.length==0" class="btn btn-secondary btn-lg" disabled type="submit"> Confirm Seats </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,75 @@
+<app-header2></app-header2>
+<div id="margins" style="background-image:url(../../assets/pexels6.jpg);background-size:cover; background-repeat:no-repeat;background-position:center;">
+<div >
+    <div class="row justify-content-center" *ngIf="ticket">
+        <div class="col col-lg-8 col-md-10 col-sm-12 ticket">
+                <div class="row heading my-2">
+                    <div class="col">
+                        <h2>Ticket</h2></div>
+                </div>
+                <div class="row route my-2 mx-1 py-2"> 
+                    <div class="col">
+                        <h4 class="endpoints">{{this.ticket.busId.startCity}} {{this.ticket.busId.destination}}</h4>
+                    </div>
+                    <div class="col">
+                        <h4 align="right">{{this.ticket.busId.departDate | date: 'mediumDate'}}</h4>
+                    </div>
+                </div>
+                <div class="row my-3 mx-1 passenger pt-2">
+                    <div class="col-md-4 col-sm-6">
+                        <h4><b>Passenger Details</b></h4>
+                        <p class="passengername"><b>{{this.ticket.userId.userName}}</b></p>
+                        <p>{{this.ticket.userId.phoneNumber}} <br>{{this.ticket.userId.email}}</p>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                        <h4><b>Ticket Id</b></h4>
+                        <p>{{this.ticket._id}}</p>
+                    </div>
+
+                    <div class="col-md-2 col-sm-6">
+                        <h4><b>Seat No</b></h4>
+                         <p><span *ngFor="let seat of this.ticket.ForEverySelectedSeat">
+                            {{seat | seatname}} 
+                          </span></p> 
+                          <!-- <p>{{this.ticket.ForEverySelectedSeat}}</p> -->
+
+                   
+
+                    </div>
+
+                    <div class="col-md-2 col-sm-6">
+                        <h4><b>Total Fare</b></h4>
+                         <p>{{this.ticket.busId.pricePerSeat*this.ticket.ForEverySelectedSeat.length | currency: 'INR'}}</p> 
+                    </div>
+
+                </div>
+
+                <div class="row my-3 mx-1 passenger pt-2">
+                    <div class="col-md-4 col-sm-6">
+                        <h4><b>Bus Name</b></h4>
+                         <p>{{this.ticket.busId.companyName}}</p> 
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                        <h4><b>Reporting Time</b></h4>
+                        <p>Before 30 minutes</p>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                        <h4><b>Departure Time</b></h4>
+                        <p>{{this.ticket.busId.departTime}}</p> 
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- <div class="row my-3">
+        <div class="mx-auto condition">**Please show this copy while boarding</div>
+    </div>
+    
+          
+        </div>
+    </div> -->
+    <div class="button1"><button class="btn" style="background-color:maroon;color:white;" routerLink="" (click)="print()">Print Ticket</button>
+    </div>
+</div>

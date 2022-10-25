@@ -1,0 +1,191 @@
+<app-header></app-header>
+<div id="margins" style="background-image:url(../../assets/pexels2.jpg);background-size:cover; background-repeat:no-repeat;background-position:center;">
+<div class="card">
+    <div class="card-body">
+      <h4 class="card-title">User Registration</h4>
+  
+      <div class="row">
+        
+          <form novalidate [formGroup]= "addUserForm">
+            <div class="form-group">
+              <label for="userName">Name </label>
+              <input
+                type="text"
+                name="userName"
+                class="form-control"
+                formControlName="userName"
+                [ngClass]="{
+                  'is-invalid':
+                    userName.errors && (userName.touched || userName.dirty),
+                  'is-valid': userName.valid
+                }"
+              />
+              <div class="invalid-feedback">
+                <strong *ngIf="userName.errors?.['required']"
+                  >Name is required
+                </strong>
+                <strong *ngIf="userName.errors?.['minlength']"
+                  >Name Length must be greater than
+                  {{userName.errors?.['minlength'].requiredLength}} character
+                  {{userName.errors?.['minlength'].requiredLength -
+                                  userName.errors?.['minlength'].actualLength}}
+                  more characters required
+                </strong>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="text"
+                name="email"
+                class="form-control"
+                formControlName="email"
+                [ngClass]="{
+                  'is-invalid':
+                    email.errors && (email.touched || email.dirty),
+                  'is-valid': email.valid
+                }"
+              />
+              <div class="invalid-feedback">
+                  <strong *ngIf="email.errors?.['required']"
+                  >Email is required
+                </strong>
+                <strong *ngIf="email.errors?.['pattern']">
+                  Email should be of the pattern abc@gmail.com
+                </strong>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number</label>
+              <input
+                type="text"
+                name="phoneNumber"
+                class="form-control"
+                formControlName="phoneNumber"
+                [ngClass]="{
+                  'is-invalid':
+                    phoneNumber.errors &&
+                    (phoneNumber.touched || phoneNumber.dirty),
+                  'is-valid': phoneNumber.valid
+                }"
+              />
+              <div class="invalid-feedback">
+                <strong *ngIf="phoneNumber.errors?.['required']"
+                  >Phone Number is required
+                </strong>
+                <strong *ngIf="phoneNumber.errors?.['pattern']"
+                  >Phone number should be 10 numbers and cannot start with a
+                  number less than 6</strong
+                >
+              </div>
+            </div>
+            <label for="gender">Gender</label>
+            <div class="form-group" scope="col" id="radio-toolbar">
+              
+              <input scope="col"
+                type="radio"
+                id="male"
+                name="gender"
+                value="Male"
+                checked
+                class="form-control"
+                formControlName="gender"
+              /><label for="male">Male</label>
+              <input scope="col"
+                type="radio"
+                id="female"
+                name="gender"
+                value="Female"
+                checked
+                class="form-control"
+                formControlName="gender"
+              /><label for="female">Female</label>
+            </div>
+            <div class="form-group">
+              <label for="dateOfBirth">Date of Birth</label>
+              <input
+                type="date"
+                name="dateOfBirth"
+                class="form-control"
+                formControlName="dateOfBirth"
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="text"
+                name="password"
+                class="form-control"
+                formControlName="password"
+                [ngClass]="{
+                  'is-invalid':
+                    password.errors &&
+                    (password.touched || password.dirty),
+                  'is-valid': password.valid
+                }"
+              />
+              <div class="invalid-feedback">
+                  <strong *ngIf="password.errors?.['required']"
+                  >Password is required
+                </strong>
+                <strong *ngIf="password.errors?.['pattern']"
+                  >
+                  Password should be 8-20 characters.
+                  Password should contain atleast one special character.
+                  Password should contain atleast one lowercase character.
+                  Password should contain atleast one uppercase character.
+                  Password should contain atleast one number.
+                  </strong
+                >
+              </div>
+            </div>
+            
+  
+            <button
+             id="submit_button"
+              type="submit"
+              [disabled]= "addUserForm.invalid"
+              (click)= "addUser()"
+              class="btn"
+            >
+              Submit
+            </button>
+            <button
+              id="reset_button"
+              type="button"
+              (click) = "addUserForm.reset()"
+              class="btn btn-default"
+            >
+              Reset
+            </button>
+          </form>
+      
+        <!-- <div class="col-md-6">
+          <label>
+            <strong>addUserForm : JSON</strong>
+          </label>
+          <pre class="alert alert-dark" role="alert">
+                      {{ addUserForm.value | json }}
+                  </pre
+          >
+        </div> -->
+      
+      <div
+        class="alert alert-primary alert-dismissible fade show"
+        role="alert"
+        *ngIf= "formNotSubmitted"
+      >
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <strong>Email and/or mobile already exists</strong>
+      </div>
+    </div>
+  </div>
+</div>  

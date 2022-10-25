@@ -1,0 +1,18 @@
+#margins{
+    padding: 12.5%;
+    padding-left: 35%;
+}
+
+#login{
+ background-color: gainsboro;
+ width: 60%;
+}
+
+#login_button{
+    color: gainsboro;
+    background-color: maroon;
+}
+
+#register_button{
+  color:maroon;
+}

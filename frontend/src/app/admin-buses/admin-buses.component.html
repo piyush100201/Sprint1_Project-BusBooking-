@@ -1,0 +1,274 @@
+<app-header3></app-header3>
+
+<div class="container container1">
+
+  <div id="box" class="row ">
+    <div class="form create-bus-form ">
+      <form #formDir="ngForm" [formGroup]="createBusForm">
+        <h1 style="text-align: center;">Add new Bus</h1>
+        <div class="row row1">
+          <div class="col form-floating mb-3">
+            <div class="form-group">
+              <label for="companyName"><i class="fa fa-bus" aria-hidden="true"></i> Company Name</label>
+              <input type="text" class="form-control" name="companyName" placeholder="Company Name "
+                formControlName="companyName" />
+
+              <div *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)" class="input-error">
+                <div id="err" *ngIf="companyName.errors?.['required']">
+                  Bus Company Name is required
+                </div>
+                <div id="err" *ngIf="companyName.errors?.['minlength']">CompanyName Length must be greater than
+                  {{companyName.errors?.['minlength'].requiredLength}} character
+                  {{companyName.errors?.['minlength'].requiredLength -
+                  companyName.errors?.['minlength'].actualLength}}
+                  more characters required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col  form-floating mb-3">
+            <div class="form-group">
+              <label for="companyName"><i class="fa fa-id-card" aria-hidden="true"></i> Bus Number</label>
+              <input type="text" class="form-control" name="busNumber" placeholder="Bus Number"
+                formControlName="busNumber" />
+
+              <div *ngIf="busNumber.invalid && (busNumber.dirty || busNumber.touched)" class="input-error">
+                <div id="err" *ngIf="busNumber.errors?.['required']">
+                  Bus Number is required
+                </div>
+                <div id="err" *ngIf="busNumber.errors?.['pattern']">
+                  Bus Number should be of format AB 00 AB 1234
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="busType"><i class="fa fa-bed" aria-hidden="true"></i>Bus Type</label>
+              <select class="custom-select form-control" formControlName="busType">
+                <option value="default">--Select a BusType--</option>
+                <option *ngFor="let type of Types" value="{{ type }}">
+                  {{ type }}
+                </option>
+              </select>
+
+              <!-- error block -->
+              <div class="invalid-feedback" *ngIf="isSubmitted && busType.errors?.['required']">
+                <sup>*</sup>Please enter your city name
+              </div>
+
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="startCity"><i class="fa fa-building-o" aria-hidden="true"></i>Start City</label>
+              <select class="custom-select form-control" formControlName="startCity">
+                <option value="default">--Select a City--</option>
+                <option *ngFor="let city of Cities" value="{{ city }}">
+                  {{ city }}
+                </option>
+              </select>
+
+              <div id="err" class="invalid-feedback" *ngIf="submitted && 
+              createBusForm['destination'].errors?.['required']">
+                Choose destination.
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row row2">
+          <div class="col">
+            <div class="form-group">
+              <label for="destination"><i class="fa fa-building-o" aria-hidden="true"></i>Destination City</label>
+              <select class="custom-select form-control" formControlName="destination">
+                <option value="default">--Select a City--</option>
+                <option *ngFor="let city of Cities" value="{{ city }}">
+                  {{ city }}
+                </option>
+              </select>
+
+              <div id="err" class="invalid-feedback" *ngIf="submitted && 
+              createBusForm['destination'].errors?.['required']">
+                Choose destination.
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="departTime"><i class="fa fa-clock-o" aria-hidden="true"></i> Depart Time</label>
+              <input type="time" class="form-control" name="departTime" placeholder="Depart Time "
+                formControlName="departTime" />
+
+              <div *ngIf="departTime.invalid && (departTime.dirty || departTime.touched)" class="input-error">
+                <div id="err" *ngIf="departTime.errors?.['required']">
+                  Depart Time is Required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="departDate"><i class="fa fa-calendar-o" aria-hidden="true"></i> Depart Date</label>
+              <input type="date" class="form-control" name="departDate" placeholder="Depart Date"
+                formControlName="departDate" />
+
+              <div *ngIf="departDate.invalid && (departDate.dirty || departDate.touched)" class="input-error">
+                <div id="err" *ngIf="departDate.errors?.['required']">
+                  Depart Date is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="departDate"><i class="fa fa-money" aria-hidden="true"></i> Price PerSeat</label>
+              <input type="number" class="form-control" name="pricePerSeat" placeholder="Price PerSeat"
+                formControlName="pricePerSeat" />
+
+              <div *ngIf="pricePerSeat.invalid && (pricePerSeat.dirty || pricePerSeat.touched)" class="input-error">
+                <div id="err" *ngIf="pricePerSeat.errors?.['required']">
+                  Price PerSeat is required
+                </div>
+                <div id="err" *ngIf="pricePerSeat.errors?.['pattern']">
+                  Price PerSeat is can be from 100 to 9999
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row row3">
+          <div class="col">
+            <div class="form-group">
+              <label for="seatsRow"><i class="fa fa-chevron-right" aria-hidden="true"></i> SeatsRow</label>
+              <input type="number" class="form-control" name="seatsRow" placeholder="NumberofRow"
+                formControlName="seatsRow" />
+
+              <div *ngIf="seatsRow.invalid && (seatsRow.dirty || seatsRow.touched)" class="input-error">
+                <div id="err" *ngIf="seatsRow.errors?.['required']">
+                  Bus Number is required
+                </div>
+                <div id="err" *ngIf="seatsRow.errors?.['pattern']">
+                  Row can not be more than 9 and less than 1
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="seatsCol"><i class="fa fa-chevron-down" aria-hidden="true"></i> SeatsCol</label>
+              <input type="number" class="form-control" name="seatsCol" placeholder="NumberofColumn"
+                formControlName="seatsCol" />
+
+              <div *ngIf="seatsCol.invalid && (seatsCol.dirty || seatsCol.touched)" class="input-error">
+                <div id="err" *ngIf="seatsCol.errors?.['required']">
+                  Seats Col is required
+                </div>
+                <div id="err" *ngIf="seatsCol.errors?.['pattern']">
+                  Column can not be more than 9 and less than 1
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="driverName"><i class="fa fa-id-card" aria-hidden="true"></i> Driver Name</label>
+              <input type="text" class="form-control" name="driverName" placeholder="driverName"
+                formControlName="driverName" />
+
+              <div *ngIf="driverName.invalid && (driverName.dirty || driverName.touched)" class="input-error">
+                <div id="err" *ngIf="driverName.errors?.['required']">
+                  Driver Name is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="driverNumber"><i class="fa fa-id-card" aria-hidden="true"></i> Driver Number</label>
+              <input type="number" class="driverNumber" name="driverNumber" placeholder="driver Number"
+                formControlName="driverNumber" />
+
+              <div *ngIf="driverNumber.invalid && (driverNumber.dirty || driverNumber.touched)" class="input-error">
+                <div id="err" *ngIf="driverNumber.errors?.['required']">
+                  driver Number is required
+                </div>
+                <div id="err" *ngIf="driverNumber.errors?.['pattern']">
+                  Driver Phone number should be 10 numbers starting at 6
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" [disabled]="createBusForm.invalid" (click)="createBus()" class="btn "
+          style="background-color: maroon; color:gainsboro">
+          Submit
+        </button>
+        <button type="button" (click)="createBusForm.reset()" class="btn btn-default" style="color: maroon;">
+          Reset
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+
+  <div>
+    <h1 style="text-align: center;">Bus List</h1>
+
+
+    <ng-container *ngFor="let bus of busDataArray; index as i">
+      <div id="list">
+        <h6> Bus Index : {{i}}</h6>
+        <div class="row ">
+          <div class="col">
+            Comapany Name: {{bus.companyName | uppercase}}
+          </div>
+          <div class="col">
+            Bus Type: {{bus.busType| uppercase}}
+          </div>
+          <div class="col">
+            Start City:{{bus.startCity| uppercase
+            }}
+          </div>
+          <div class="col">
+            Arrival City: {{bus.destination | uppercase
+            }}
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col">
+            SEAT ROW:{{bus.seatsRow }}
+          </div>
+          <div class="col">
+            Seat Column:{{bus.seatsCol}}
+          </div>
+          <div class="col">
+            Depart Date:{{bus.departDate | date: 'dd/MM/yyyy'
+            }}
+          </div>
+          <div class="col">
+            Depart Time:{{bus.departTime
+            }}
+          </div>
+        </div>
+
+
+        <button class="btn" type="submit" style="background-color:maroon; color:white; margin-right: 20px ;"> <a
+            [href]="'editSeat/' + bus._id" style="text-decoration: none;color: inherit;">Select Seat Page</a></button>
+
+        <a style="color: maroon" [href]="'/admin/editbus/' + bus._id">Edit Bus</a>
+
+        <div class="divider  mb-3"></div>
+      </div>
+    </ng-container>
+
+
+
+
+  </div>
+
+</div>

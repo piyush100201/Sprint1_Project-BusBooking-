@@ -1,0 +1,35 @@
+<app-header> </app-header>
+<div id="margins" style="background-image:url(../../assets/pexels1.jpg);background-size:cover; background-repeat:no-repeat;background-position:center;">
+
+
+   
+          <div id="login" class="login-form border p-5">
+            <div class="text-center heading">
+              <h2 class="mb-2">Login</h2>
+             
+            </div>
+            <form novalidate [formGroup]= "loginForm" (ngSubmit)= "loginUser()">
+              <div class="form-group">
+                <label for="email">Enter Email</label>
+                <input type="text" class="form-control" placeholder="Enter Email" formControlName="email">
+                <!-- <div class="invalid-feedback">
+                  <strong *ngIf="userName.errors?.['required']">userName is required </strong>
+                </div> -->
+              </div>
+              <div class="form-group">
+                <label for="password">Enter Password</label>
+                <input type="password" class="form-control" placeholder="Enter Password" formControlName="password">
+                <!-- <div class="invalid-feedback">
+                  <strong *ngIf="password.errors?.['required']">password is required </strong>
+                </div> -->
+              </div>
+              <button id="login_button" type="submit" class="btn">Login</button>
+              <p class="lead">Don't have an account? 
+                <button id="register_button" routerLink="/users/addUser" class="btn">Create a free account</button><!--<a routerLink="/users/addUser">Create a free account</a>-->
+              </p>
+              <!-- <a name="" id="" class="btn btn-primary" type="submit">Admin</a> -->
+  
+  
+            </form>
+          </div>
+        

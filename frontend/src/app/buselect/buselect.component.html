@@ -1,0 +1,52 @@
+<app-header2></app-header2>
+<br>
+<div class="form-group">
+    <input type="text" class="form-control search-field" placeholder="search here for specific field..." [(ngModel)] = "searchText">
+</div>
+<div >
+    <h1 style="text-align: center;">Bus List</h1>
+
+    
+    <ng-container  *ngFor="let bus of busDataArray | filterUsers:searchText; index as i">
+      <div id="list" >
+      <h6 > Bus Index : {{i}}</h6>
+      <div  class="row ">
+        <div class="col">
+          {{bus.companyName}}
+        </div>
+        <div class="col">
+          {{bus.busType}}
+        </div>
+        <div class="col">
+          {{bus.startCity
+          }}
+        </div>
+        <div class="col">
+          {{bus.destination
+          }}
+        </div>
+      </div>
+    <div class="row ">
+      <div class="col">
+        Seat Row:{{bus.seatsRow}}
+      </div>
+      <div class="col">
+        Seat Column:{{bus.seatsCol}}
+      </div>
+      <div class="col">
+        {{bus.departDate
+        }}
+      </div>
+      <div class="col">
+        {{bus.departTime
+        }}
+      </div>
+    </div>
+  
+
+    <button class="btn" type="submit" style="background-color:maroon; color:white; margin-right: 20px ;" routerLink="/editSeat/{{bus._id}}"> Select Seat Page</button>
+   
+    
+    <div class="divider  mb-3"></div>
+  </div>
+  </ng-container>

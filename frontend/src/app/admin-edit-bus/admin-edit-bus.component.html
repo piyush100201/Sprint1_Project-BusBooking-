@@ -1,0 +1,204 @@
+<app-header3></app-header3>
+
+<div class="container container1">
+
+  <div id="box" class="row ">
+    <div class="form create-bus-form ">
+      <form #formDir="ngForm" [formGroup]="editBusForm">
+        <h1 style="text-align: center;">Update Bus</h1>
+        <div class="row row1">
+          <div class="col form-floating mb-3">
+            <div class="form-group">
+              <label for="companyName"><i class="fa fa-bus" aria-hidden="true"></i> Company Name</label>
+              <input type="text" class="form-control" name="companyName" placeholder="Company Name "
+                formControlName="companyName" />
+
+              <div *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)" class="input-error">
+                <div id="err" *ngIf="companyName.errors?.['required']">
+                  Bus Company Name is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col  form-floating mb-3">
+            <div class="form-group">
+              <label for="companyName"><i class="fa fa-id-card" aria-hidden="true"></i> Bus Number</label>
+              <input type="text" class="form-control" name="busNumber" placeholder="Bus Number"
+                formControlName="busNumber" />
+
+              <div *ngIf="busNumber.invalid && (busNumber.dirty || busNumber.touched)" class="input-error">
+                <div id="err" *ngIf="busNumber.errors?.['required']">
+                  Bus Number is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="busType">Bus Type</label>
+              <select class="custom-select form-control" formControlName="busType">
+                <option value="default">--Select a BusType--</option>
+                <option *ngFor="let type of Types" value="{{ type }}">
+                  {{ type }}
+                </option>
+              </select>
+
+              <div id="err" class="invalid-feedback" *ngIf="submitted && 
+              editBusForm['destination'].errors?.['required']">
+                Choose destination.
+              </div>
+
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="startCity">Start City</label>
+              <select class="custom-select form-control" formControlName="startCity">
+                <option value="default">--Select a City--</option>
+                <option *ngFor="let city of Cities" value="{{ city }}">
+                  {{ city }}
+                </option>
+              </select>
+
+              <div id="err" class="invalid-feedback" *ngIf="submitted && 
+              editBusForm['destination'].errors?.['required']">
+                Choose destination.
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row row2">
+          <div class="col">
+            <div class="form-group">
+              <label for="destination">Destination City</label>
+              <select class="custom-select form-control" formControlName="destination">
+                <option value="default">--Select a City--</option>
+                <option *ngFor="let city of Cities" value="{{ city }}">
+                  {{ city }}
+                </option>
+              </select>
+
+              <div id="err" class="invalid-feedback" *ngIf="submitted && 
+              editBusForm['destination'].errors?.['required']">
+                Choose destination.
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="departTime"><i class="fa fa-clock-o" aria-hidden="true"></i> Depart Time</label>
+              <input type="time" class="form-control" name="departTime" placeholder="Depart Time "
+                formControlName="departTime" />
+
+              <div *ngIf="departTime.invalid && (departTime.dirty || departTime.touched)" class="input-error">
+                <div id="err" *ngIf="departTime.errors?.['required']">
+                  Depart Time is Required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="departDate"><i class="fa fa-calendar-o" aria-hidden="true"></i> Depart Date</label>
+              <input type="date" class="form-control" name="departDate" placeholder="Depart Date"
+                formControlName="departDate" />
+
+              <div *ngIf="departDate.invalid && (departDate.dirty || departDate.touched)" class="input-error">
+                <div id="err" *ngIf="departDate.errors?.['required']">
+                  Depart Date is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="departDate"><i class="fa fa-money" aria-hidden="true"></i> Price PerSeat</label>
+              <input type="number" class="form-control" name="pricePerSeat" placeholder="Price PerSeat"
+                formControlName="pricePerSeat" />
+
+              <div *ngIf="pricePerSeat.invalid && (pricePerSeat.dirty || pricePerSeat.touched)" class="input-error">
+                <div id="err" *ngIf="pricePerSeat.errors?.['required']">
+                  Price PerSeat is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row row3">
+          <div class="col">
+            <div class="form-group">
+              <label for="seatsRow"><i class="fa fa-chevron-right" aria-hidden="true"></i> SeatsRow</label>
+              <input type="number" class="form-control" name="seatsRow" placeholder="NumberofRow"
+                formControlName="seatsRow" />
+
+              <div *ngIf="seatsRow.invalid && (seatsRow.dirty || seatsRow.touched)" class="input-error">
+                <div id="err" *ngIf="seatsRow.errors?.['required']">
+                  Seats Row is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="seatsCol"><i class="fa fa-chevron-down" aria-hidden="true"></i> SeatsCol</label>
+              <input type="number" class="form-control" name="seatsCol" placeholder="NumberofColumn"
+                formControlName="seatsCol" />
+
+              <div *ngIf="seatsCol.invalid && (seatsCol.dirty || seatsCol.touched)" class="input-error">
+                <div id="err" *ngIf="seatsCol.errors?.['required']">
+                  Seats Col is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="driverName"><i class="fa fa-id-card" aria-hidden="true"></i> Driver Name</label>
+              <input type="text" class="form-control" name="driverName" placeholder="driverName"
+                formControlName="driverName" />
+
+              <div *ngIf="driverName.invalid && (driverName.dirty || driverName.touched)" class="input-error">
+                <div id="err" *ngIf="driverName.errors?.['required']">
+                  Driver Name is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="driverNumber"><i class="fa fa-id-card" aria-hidden="true"></i> Driver Number</label>
+              <input type="number" class="driverNumber" name="driverNumber" placeholder="driver Number"
+                formControlName="driverNumber" />
+
+              <div *ngIf="driverNumber.invalid && (driverNumber.dirty || driverNumber.touched)" class="input-error">
+                <div id="err" *ngIf="driverNumber.errors?.['required']">
+                  driver Number is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" [disabled]="editBusForm.invalid" (click)="editBus()" class="btn "
+          style="background-color: maroon; color:gainsboro">
+          Submit
+        </button>
+        <button type="button" (click)="editBusForm.reset()" class="btn btn-default" style="color: maroon;">
+          Reset
+        </button>
+      </form>
+
+    </div>
+
+
+
+
+
+
+  </div>
+
+
+
+</div>
