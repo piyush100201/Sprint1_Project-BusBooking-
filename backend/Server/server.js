@@ -13,7 +13,7 @@ require('../config/passportConfig');
 
 
 //MongoDB  url
-var mongoDatabase = 'mongodb+srv://m001-student:m001-mongodb-basics@sandbox.gp5jc.mongodb.net/sprint1_final';
+var mongoDatabase = 'mongodb_url';
 
 
 //create  express server
